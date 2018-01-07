@@ -1,9 +1,11 @@
 import { RECEIVE_POSTS } from "../actions/index";
 
-function post(state = {}, action) {
+function post(state = {posts: []}, action) {
   switch (action.type) {
     case RECEIVE_POSTS:
-      return action.posts
+      return {
+        posts: action.posts
+      }
     default:
       return state
   }

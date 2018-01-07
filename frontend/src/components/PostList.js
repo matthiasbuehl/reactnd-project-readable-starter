@@ -14,24 +14,24 @@ class PostList extends React.Component {
   }
 
   render() {
-    console.log('state', this.state)
-    console.log('props', this.props)
+    const { posts } = this.props
     return (
       <div className="post-list">
-        <Post />
-        <Post />
+      {posts.map(post => (
+        <div key={post.id}><Post /></div>
+      ))}
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  return {posts: state} 
+  return state
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getPosts: () => dispatch(fetchPosts()) 
+    getPosts: () => dispatch(fetchPosts())
   }
 }
 
