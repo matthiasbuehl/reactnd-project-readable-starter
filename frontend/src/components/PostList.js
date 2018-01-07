@@ -9,11 +9,12 @@ class PostList extends React.Component {
   componentDidMount() {
     this.props.getPosts()
       .then(posts => {
-        debugger
+        //console.log(posts)
       })
   }
 
   render() {
+    console.log('state', this.state)
     console.log('props', this.props)
     return (
       <div className="post-list">
@@ -25,7 +26,7 @@ class PostList extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return state
+  return {posts: state} 
 }
 
 function mapDispatchToProps(dispatch) {
