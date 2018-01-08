@@ -4,24 +4,30 @@ import { fetchPosts } from '../actions'
 import Post from './Post'
 
 class PostList extends React.Component {
-  state = {}
-
   componentDidMount() {
     this.props.getPosts()
-      .then(posts => {
-        //console.log(posts)
-      })
   }
 
   render() {
     const { posts } = this.props
-    return (
-      <div className="post-list">
-      {posts.map(post => (
-        <div key={post.id}><Post /></div>
-      ))}
-      </div>
-    )
+    return posts && posts.length
+      ? (<table className="posts-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Vote Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map(post => (
+            <Post key={post.id} post={post} />
+          ))}
+        </tbody>
+      </table>
+      )
+      : (<div>No posts</div>)
   }
 }
 
