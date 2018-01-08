@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions'
-import Post from './Post'
+import PostRow from './PostRow'
 
 class PostList extends React.Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ class PostList extends React.Component {
         </thead>
         <tbody>
           {posts.map(post => (
-            <Post key={post.id} post={post} />
+            <PostRow key={post.id} post={post} />
           ))}
         </tbody>
       </table>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Post = (props) => {
+const PostRow = (props) => {
   const { id, title, author, category, voteScore } = props.post
   return (
     <tr className="post">
@@ -13,4 +13,4 @@ const Post = (props) => {
   )
 }
 
-export default Post
+export default PostRow

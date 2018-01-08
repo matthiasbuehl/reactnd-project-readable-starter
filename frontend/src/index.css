@@ -7,3 +7,9 @@ body {
 th {
   text-align: left;
 }
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}

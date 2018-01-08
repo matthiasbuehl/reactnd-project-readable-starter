@@ -10,7 +10,7 @@ class App extends Component {
   render() {
 
     return (
-      <div className="app">
+      <div className="app center">
         <Switch>
           <Route exact path='/:post_id' component={PostDetailView} />
           <Route exact path='/' component={PostListView} />

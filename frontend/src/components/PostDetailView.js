@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import Post from './Post'
+import PostDetail from './PostDetail'
 import { fetchPost } from '../actions'
 
 class PostDetailView extends React.Component {
@@ -15,7 +15,7 @@ class PostDetailView extends React.Component {
     return post
       ? (
         <div className="post-detail-view">
-          <Post post={post} />
+          <PostDetail post={post} />
         </div>
       )
       : (<div>No post id</div>)
