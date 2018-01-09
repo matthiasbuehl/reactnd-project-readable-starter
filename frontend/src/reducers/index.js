@@ -1,7 +1,13 @@
 import { RECEIVE_POSTS } from "../actions/index";
 import { RECEIVE_POST } from "../actions/index";
+import { RECEIVE_POST_COMMENTS } from "../actions/index";
 
-function post(state = {posts: []}, action) {
+const initialState = {
+  posts: [],
+  post: {}
+}
+
+function post(state = initialState, action) {
   console.log('action:', action)
   switch (action.type) {
     case RECEIVE_POSTS:
@@ -13,6 +19,14 @@ function post(state = {posts: []}, action) {
       return {
         ...state,
         post: action.post
+      }
+    case RECEIVE_POST_COMMENTS:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: action.comments
+        }
       }
     default:
       return state
