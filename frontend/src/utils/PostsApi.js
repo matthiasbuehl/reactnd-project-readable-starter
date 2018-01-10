@@ -17,3 +17,8 @@ export function fetchPostComments(postId) {
     return fetch(`${BASE_URL}/posts/${postId}/comments`, OPTS)
         .then(res => res.json())
 }
+
+export function fetchCategories() {
+    return fetch(`${BASE_URL}/categories`, OPTS)
+        .then(res => res.json())
+}

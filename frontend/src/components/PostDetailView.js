@@ -7,7 +7,7 @@ class PostDetailView extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.post_id
     this.props.getPost(id)
-    this.props.getPostComments(id)
+      .then(this.props.getPostComments(id))
   }
 
   render() {

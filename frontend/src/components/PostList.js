@@ -27,7 +27,7 @@ class PostList extends React.Component {
         </tbody>
       </table>
       )
-      : (<div>No posts</div>)
+      : null
   }
 }
 
