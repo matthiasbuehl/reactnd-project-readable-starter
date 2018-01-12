@@ -1,13 +1,16 @@
-import { RECEIVE_POSTS, SET_CATEGORY } from "../actions/index";
+import { RECEIVE_POSTS } from "../actions/index";
 import { RECEIVE_POST } from "../actions/index";
 import { RECEIVE_POST_COMMENTS } from "../actions/index";
 import { RECEIVE_CATEGORIES } from "../actions/index";
+import { SET_CATEGORY } from "../actions/index";
+import { SET_SORT_BY } from "../actions/index";
 
 const initialState = {
   posts: [],
   post: {},
   categories: [],
-  category: null
+  category: null,
+  sortBy: { column: 'title', order: 'asc' }
 }
 
 function post(state = initialState, action) {
@@ -41,6 +44,11 @@ function post(state = initialState, action) {
         ...state,
         category: action.category
       }
+    case SET_SORT_BY:
+      return {
+        ...state,
+        sortBy: action.sortBy
+    }
     default:
       return state
   }

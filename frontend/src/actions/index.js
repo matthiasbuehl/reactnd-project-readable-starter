@@ -6,6 +6,7 @@ export const RECEIVE_POST = 'RECEIVE_POST'
 export const RECEIVE_POST_COMMENTS = 'RECEIVE_POST_COMMENTS'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const SET_CATEGORY = 'SET_CATEGORY'
+export const SET_SORT_BY  = 'SET_SORT_BY'
 
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
@@ -30,6 +31,11 @@ export const receiveCategories = categories => ({
 export const setCategory = category => ({
   type: SET_CATEGORY,
   category
+})
+
+export const setSortBy = sortBy => ({
+  type: SET_SORT_BY,
+  sortBy
 })
 
 export const fetchPosts = () => dispatch => (
