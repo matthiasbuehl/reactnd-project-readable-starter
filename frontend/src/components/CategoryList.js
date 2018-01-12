@@ -4,21 +4,25 @@ import { setCategory } from '../actions'
 
 class CategoryList extends React.Component {
   handleClick = (e) => {
-    this.props.setCategory(e.target.value);
+    const { category } = this.props
+
+    let selectedCategory = e.target.value
+    selectedCategory = selectedCategory === category ? null : selectedCategory
+    this.props.setCategory(selectedCategory)
   }
 
   render() {
-    const { categories } = this.props
+    const { categories, category } = this.props
     return (
       categories
         ? (<div className="category-list">
-          {categories.map(category => (
+          {categories.map(cat => (
             <button
-              key={category.name}
-              value={category.name}
+              key={cat.name}
+              value={cat.name}
               onClick={this.handleClick}
-              className="category">
-              {category.name}
+              className={cat.name === category ? 'category-active' : 'category'}>
+              {cat.name}
             </button>
           ))}
         </div>)

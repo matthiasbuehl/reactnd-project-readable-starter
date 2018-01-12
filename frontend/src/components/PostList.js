@@ -9,7 +9,7 @@ class PostList extends React.Component {
   }
 
   render() {
-    const { posts } = this.props
+    const { posts, category } = this.props
     return posts && posts.length
       ? (<table className="posts-table">
         <thead>
@@ -21,9 +21,10 @@ class PostList extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {posts.map(post => (
-            <PostRow key={post.id} post={post} />
-          ))}
+          {posts.filter(post => (post.category === category) || !category)
+            .map(post => (
+              <PostRow key={post.id} post={post} />
+            ))}
         </tbody>
       </table>
       )
