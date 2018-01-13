@@ -11,9 +11,7 @@ class PostList extends React.Component {
   handleHeaderClick = (clickedColumn) => {
     const { sortBy } = this.props
 
-    clickedColumn = clickedColumn.toLowerCase()
     let newSortBy = {}
-
     if (sortBy.column === clickedColumn) {
       newSortBy = {
         ...sortBy,
@@ -33,8 +31,21 @@ class PostList extends React.Component {
       ? (<table className="posts-table">
         <thead>
           <tr>
-            {['Title', 'Author', 'Category', 'Vote Count'].map(column => (
-              <th onClick={() => this.handleHeaderClick(column)}>{column}</th>
+            {
+              [
+                { display: 'Title', field: 'title' },
+                { display: 'Date', field: 'timestamp' },
+                { display: 'Author', field: 'author' },
+                { display: 'Cateogry', field: 'category' },
+                { display: 'Vote Count', field: 'voteScore' }
+              ].map(columnMap => (
+              <th key={columnMap.field}>
+                <a
+                  href="#" onClick={() => this.handleHeaderClick(columnMap.field)}
+                >
+                  {columnMap.display}
+                </a>
+              </th>
             ))}
           </tr>
         </thead>
