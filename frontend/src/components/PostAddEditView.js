@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { fetchPost, initPost, setPost } from '../actions'
+import { fetchPost, initPost, setPost, fetchAddPost } from '../actions'
 
 class PostAddEditView extends React.Component {
   state = {}
@@ -24,6 +24,7 @@ class PostAddEditView extends React.Component {
 
 
   handleChange = (event, field) => {
+    event.preventDefault()
     const { post } = this.props
 
     this.props.setPost({
@@ -32,13 +33,15 @@ class PostAddEditView extends React.Component {
     })
   }
 
-  handleSubmit = () => {
-    return
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const { post } = this.props
+
+    this.props.addPost(post)
   }
 
   render() {
     const { post, columnMaps } = this.props
-    console.log('post: ', post)
 
     return post
       ? (
@@ -73,7 +76,8 @@ function mapDispatchToProps(dispatch) {
   return {
     getPost: (id) => dispatch(fetchPost(id)),
     initPost: () => dispatch(initPost()),
-    setPost: (post) => dispatch(setPost(post))
+    setPost: (post) => dispatch(setPost(post)),
+    addPost: (post) => dispatch(fetchAddPost(post)),
   }
 }
 
