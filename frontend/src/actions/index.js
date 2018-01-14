@@ -2,6 +2,8 @@
 import * as PostsApi from '../utils/PostsApi'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export const INIT_POST = 'INIT_POST'
+export const SET_POST = 'SET_POST'
 export const RECEIVE_POST = 'RECEIVE_POST'
 export const RECEIVE_POST_COMMENTS = 'RECEIVE_POST_COMMENTS'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
@@ -11,6 +13,15 @@ export const SET_SORT_BY  = 'SET_SORT_BY'
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
   posts
+})
+
+export const initPost = () => ({
+  type: INIT_POST
+})
+
+export const setPost = post => ({
+  type: SET_POST,
+  post
 })
 
 export const receivePost = post => ({

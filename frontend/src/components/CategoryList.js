@@ -5,6 +5,7 @@ import { setCategory } from '../actions'
 class CategoryList extends React.Component {
   handleClick = (e) => {
     const { category } = this.props
+    e.preventDefault()
 
     let selectedCategory = e.target.value
     selectedCategory = selectedCategory === category ? null : selectedCategory
@@ -16,6 +17,7 @@ class CategoryList extends React.Component {
     return (
       categories
         ? (<div className="category-list">
+         <span>Categories:</span>
           {categories.map(cat => (
             <button
               key={cat.name}

@@ -6,7 +6,10 @@ const PostDetail = (props) => {
   const { id, title, timestamp, author, category, voteScore, comments } = props.post
   return (
     <div className="post">
-      <h1>{title}</h1>
+      <h1>
+        {title}
+        <Link to={`/${id}/edit`} className="icon icon-edit">&#9998;</Link>
+      </h1>
       <div>
         <span>Author:</span>
         <span>{author}</span>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Error404 from './Error404'
 import PostListView from './PostListView'
 import PostDetailView from './PostDetailView'
+import PostAddEditView from './PostAddEditView'
 import { fetchCategories } from '../actions'
 import './App.css';
 
@@ -16,7 +17,9 @@ class App extends Component {
     return (
       <div className="app center">
         <Switch>
+          <Route exact path='/add' component={PostAddEditView} />
           <Route exact path='/:post_id' component={PostDetailView} />
+          <Route exact path='/:post_id/edit' component={PostAddEditView} />
           <Route exact path='/' component={PostListView} />
           <Route component={Error404} />
         </Switch>

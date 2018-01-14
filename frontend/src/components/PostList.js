@@ -8,7 +8,8 @@ class PostList extends React.Component {
     this.props.getPosts()
   }
 
-  handleHeaderClick = (clickedColumn) => {
+  handleHeaderClick = (event, clickedColumn) => {
+    event.preventDefault()
     const { sortBy } = this.props
 
     let newSortBy = {}
@@ -26,22 +27,17 @@ class PostList extends React.Component {
   }
 
   render() {
-    const { posts, category, sortBy } = this.props
+    const { posts, category, sortBy, columnMaps } = this.props
+
     return posts && posts.length
       ? (<table className="posts-table">
         <thead>
           <tr>
             {
-              [
-                { display: 'Title', field: 'title' },
-                { display: 'Date', field: 'timestamp' },
-                { display: 'Author', field: 'author' },
-                { display: 'Cateogry', field: 'category' },
-                { display: 'Vote Count', field: 'voteScore' }
-              ].map(columnMap => (
+              columnMaps.map(columnMap => (
               <th key={columnMap.field}>
                 <a
-                  href="#" onClick={() => this.handleHeaderClick(columnMap.field)}
+                  href="" onClick={(event) => this.handleHeaderClick(event, columnMap.field)}
                 >
                   {columnMap.display}
                 </a>
@@ -63,6 +59,7 @@ class PostList extends React.Component {
                 if (a[sortBy['column']] < b[sortBy['column']]) return 1
                 if (a[sortBy['column']] === b[sortBy['column']]) return 0
               }
+              return 0
             })
             .map(post => (
               <PostRow key={post.id} post={post} />

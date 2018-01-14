@@ -11,8 +11,8 @@ class PostDetailView extends React.Component {
   }
 
   render() {
-    console.log('props:', this.props)
     const { post } = this.props
+
     return post
       ? (
         <div className="post-detail-view">
@@ -24,7 +24,6 @@ class PostDetailView extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state)
   return state
 }
 
