@@ -1,5 +1,9 @@
 const OPTS = {
-    headers: { 'Authorization': 'whatever-you-want' }
+    headers: new Headers( {
+        'Authorization': 'whatever-you-want',
+        'Content-Type': 'application/json'
+        }
+    )
 }
 const BASE_URL = 'http://localhost:3001'
 
