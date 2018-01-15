@@ -71,3 +71,8 @@ input[type=text] {
   border: 1px solid black;
 }
 
+.body-detail {
+  padding: 0 7px;
+  margin-top: 10px;
+}
+

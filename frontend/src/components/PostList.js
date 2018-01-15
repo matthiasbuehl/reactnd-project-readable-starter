@@ -30,43 +30,46 @@ class PostList extends React.Component {
     const { posts, category, sortBy, columnMaps } = this.props
 
     return posts && posts.length
-      ? (<table className="posts-table">
-        <thead>
-          <tr>
-            {
-              columnMaps.filter(col => col.field != 'body').map(columnMap => (
-              <th key={columnMap.field}>
-                <a
-                  href="" onClick={(event) => this.handleHeaderClick(event, columnMap.field)}
-                >
-                  {columnMap.display}
-                </a>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {posts
-            .filter(post => (post.category === category) || !category)
-            .sort((a, b) => {
-              if (sortBy.order === 'asc') {
-                if (a[sortBy['column']] > b[sortBy['column']]) return 1
-                if (a[sortBy['column']] < b[sortBy['column']]) return -1
-                if (a[sortBy['column']] === b[sortBy['column']]) return 0
-              }
-              else {
-                if (a[sortBy['column']] > b[sortBy['column']]) return -1
-                if (a[sortBy['column']] < b[sortBy['column']]) return 1
-                if (a[sortBy['column']] === b[sortBy['column']]) return 0
-              }
-              return 0
-            })
-            .map(post => (
-              <PostRow key={post.id} post={post} />
-            ))
-          }
-        </tbody>
-      </table>
+      ? (
+        <table className="posts-table">
+          <thead>
+            <tr>
+              {
+                columnMaps
+                  .filter(col => col.field !== 'body')
+                  .map(columnMap => (
+                    <th key={columnMap.field}>
+                      <a
+                        href="" onClick={(event) => this.handleHeaderClick(event, columnMap.field)}
+                      >
+                        {columnMap.display}
+                      </a>
+                    </th>
+                  ))}
+            </tr>
+          </thead>
+          <tbody>
+            {posts
+              .filter(post => (post.category === category) || !category)
+              .sort((a, b) => {
+                if (sortBy.order === 'asc') {
+                  if (a[sortBy['column']] > b[sortBy['column']]) return 1
+                  if (a[sortBy['column']] < b[sortBy['column']]) return -1
+                  if (a[sortBy['column']] === b[sortBy['column']]) return 0
+                }
+                else {
+                  if (a[sortBy['column']] > b[sortBy['column']]) return -1
+                  if (a[sortBy['column']] < b[sortBy['column']]) return 1
+                  if (a[sortBy['column']] === b[sortBy['column']]) return 0
+                }
+                return 0
+              })
+              .map(post => (
+                <PostRow key={post.id} post={post} />
+              ))
+            }
+          </tbody>
+        </table>
       )
       : null
   }
