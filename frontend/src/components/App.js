@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import Error404 from './Error404'
 import PostListView from './PostListView'
 import PostDetailView from './PostDetailView'
@@ -16,6 +17,12 @@ class App extends Component {
   render() {
     return (
       <div className="app center">
+        <div className='nav-bar'>
+          <ul>
+            <li><Link to='/'>All Posts</Link></li>
+            <li><Link to='/add'>New Post</Link></li>
+          </ul>
+        </div>
         <Switch>
           <Route exact path='/add' component={PostAddEditView} />
           <Route exact path='/:post_id' component={PostDetailView} />
@@ -28,7 +35,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps( state ) {
+function mapStateToProps(state) {
   return state
 }
 

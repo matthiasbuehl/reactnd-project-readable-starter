@@ -5,6 +5,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const INIT_POST = 'INIT_POST'
 export const SET_POST = 'SET_POST'
 export const ADD_POST = 'ADD_POST'
+export const UPDATE_POST = 'UPDATE_POST'
 export const RECEIVE_POST = 'RECEIVE_POST'
 export const RECEIVE_POST_COMMENTS = 'RECEIVE_POST_COMMENTS'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
@@ -27,6 +28,11 @@ export const setPost = post => ({
 
 export const addPost = post => ({
   type: ADD_POST,
+  post
+})
+
+export const updatePost = post => ({
+  type: UPDATE_POST,
   post
 })
 
@@ -71,6 +77,12 @@ export const fetchAddPost = (post) => dispatch => (
   PostsApi
     .fetchAddPost(post)
     .then(post => dispatch(addPost(post)))
+)
+
+export const fetchUpdatePost = (post) => dispatch => (
+  PostsApi
+    .fetchUpdatePost(post)
+    .then(post => dispatch(updatePost(post)))
 )
 
 export const fetchPostComments = (id) => dispatch => (

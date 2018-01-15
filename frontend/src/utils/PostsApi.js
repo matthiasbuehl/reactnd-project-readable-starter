@@ -38,7 +38,21 @@ export function fetchAddPost(post) {
       ).then(res => {
           return res.json()
       })
-      .catch(error => console.error('Error:', error))
+      .catch(error => console.error('Error adding post', error))
+}
+
+export function fetchUpdatePost(post) {
+    return fetch(
+        `${BASE_URL}/posts/${post.id}`,
+        {
+            ...OPTS,
+            method: 'PUT',
+            body: JSON.stringify(post)
+        },
+      ).then(res => {
+          return res.json()
+      })
+      .catch(error => console.error('Error updating post', error))
 }
 
 export function fetchPostComments(postId) {

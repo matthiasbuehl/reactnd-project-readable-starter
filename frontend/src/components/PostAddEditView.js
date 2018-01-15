@@ -1,6 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { fetchPost, initPost, setPost, fetchAddPost } from '../actions'
+import {
+  fetchPost,
+  initPost,
+  setPost,
+  fetchAddPost,
+  fetchUpdatePost
+} from '../actions'
 
 class PostAddEditView extends React.Component {
   state = {}
@@ -35,9 +41,18 @@ class PostAddEditView extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { post } = this.props
+    const { post, addPost, updatePost } = this.props
 
-    this.props.addPost(post)
+    const fn = this.isNew() ? addPost : updatePost
+    console.log('post', post)
+    console.log('isNew', this.isNew())
+    console.log('fn', fn)
+    fn(post)
+  }
+
+  isNew = () => {
+    const { post } = this.props
+    return post && post.isNew ? true : false
   }
 
   render() {
@@ -78,6 +93,7 @@ function mapDispatchToProps(dispatch) {
     initPost: () => dispatch(initPost()),
     setPost: (post) => dispatch(setPost(post)),
     addPost: (post) => dispatch(fetchAddPost(post)),
+    updatePost: (post) => dispatch(fetchUpdatePost(post)),
   }
 }
 

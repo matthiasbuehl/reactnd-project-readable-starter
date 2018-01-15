@@ -3,6 +3,7 @@ import { RECEIVE_POSTS } from "../actions/index";
 import { INIT_POST } from "../actions/index";
 import { SET_POST } from "../actions/index";
 import { ADD_POST } from "../actions/index";
+import { UPDATE_POST } from "../actions/index";
 import { RECEIVE_POST } from "../actions/index";
 import { RECEIVE_POST_COMMENTS } from "../actions/index";
 import { RECEIVE_CATEGORIES } from "../actions/index";
@@ -46,6 +47,7 @@ function post(state = initialState, action) {
           timestamp: Date.now(),
           title: "",
           //voteScore: 0
+          isNew: true
         }
       }
     case SET_POST:
@@ -54,6 +56,11 @@ function post(state = initialState, action) {
         post: action.post
       }
     case ADD_POST:
+      return {
+        ...state,
+        post: action.post
+      }
+    case UPDATE_POST:
       return {
         ...state,
         post: action.post

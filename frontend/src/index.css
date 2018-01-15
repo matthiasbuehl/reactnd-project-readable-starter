@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 th {
   text-align: left;
 }
@@ -47,5 +51,19 @@ input[type=text] {
 
 .icon-add, .icon-edit {
   color: green;
+}
+
+.nav-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-bar li {
+  display: inline;
+  margin: 3px;
+  padding: 3px;
+  background-color: rgb(201, 185, 185);
+  border: 1px solid black;
 }
 
