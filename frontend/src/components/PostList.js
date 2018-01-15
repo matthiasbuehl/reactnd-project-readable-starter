@@ -34,7 +34,7 @@ class PostList extends React.Component {
         <thead>
           <tr>
             {
-              columnMaps.map(columnMap => (
+              columnMaps.filter(col => col.field != 'body').map(columnMap => (
               <th key={columnMap.field}>
                 <a
                   href="" onClick={(event) => this.handleHeaderClick(event, columnMap.field)}

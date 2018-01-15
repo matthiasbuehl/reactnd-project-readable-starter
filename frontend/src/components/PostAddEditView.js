@@ -63,7 +63,9 @@ class PostAddEditView extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <input readOnly={true} type="hidden" value={post.id} />
             {
-              columnMaps.map(columnMap => (
+              columnMaps
+                .filter(col => !['timestamp', 'voteScore'].includes(col.field) )
+                .map(columnMap => (
                 <label key={columnMap.field}>
                   {columnMap.display}
                   <input type="text"

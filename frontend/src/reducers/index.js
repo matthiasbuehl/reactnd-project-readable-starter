@@ -17,10 +17,11 @@ const initialState = {
   category: null,
   columnMaps: [
     { display: 'Title', field: 'title' },
-    //{ display: 'Date', field: 'timestamp' },
+    { display: 'Body', field: 'body' },
+    { display: 'Date', field: 'timestamp' },
     { display: 'Author', field: 'author' },
     { display: 'Cateogry', field: 'category' },
-    //{ display: 'Vote Count', field: 'voteScore' }
+    { display: 'Vote Count', field: 'voteScore' }
   ],
   sortBy: { column: 'title', order: 'asc' }
 }
