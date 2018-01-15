@@ -6,6 +6,7 @@ export const INIT_POST = 'INIT_POST'
 export const SET_POST = 'SET_POST'
 export const ADD_POST = 'ADD_POST'
 export const UPDATE_POST = 'UPDATE_POST'
+export const DELETE_POST = 'DELETE_POST'
 export const RECEIVE_POST = 'RECEIVE_POST'
 export const RECEIVE_POST_COMMENTS = 'RECEIVE_POST_COMMENTS'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
@@ -33,6 +34,11 @@ export const addPost = post => ({
 
 export const updatePost = post => ({
   type: UPDATE_POST,
+  post
+})
+
+export const deletePost = post => ({
+  type: DELETE_POST,
   post
 })
 
@@ -83,6 +89,12 @@ export const fetchUpdatePost = (post) => dispatch => (
   PostsApi
     .fetchUpdatePost(post)
     .then(post => dispatch(updatePost(post)))
+)
+
+export const fetchDeletePost = (post) => dispatch => (
+  PostsApi
+    .fetchDeletePost(post)
+    .then(post => dispatch(deletePost(post)))
 )
 
 export const fetchPostComments = (id) => dispatch => (

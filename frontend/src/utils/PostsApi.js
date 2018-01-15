@@ -38,7 +38,6 @@ export function fetchAddPost(post) {
       ).then(res => {
           return res.json()
       })
-      .catch(error => console.error('Error adding post', error))
 }
 
 export function fetchUpdatePost(post) {
@@ -52,7 +51,19 @@ export function fetchUpdatePost(post) {
       ).then(res => {
           return res.json()
       })
-      .catch(error => console.error('Error updating post', error))
+}
+
+export function fetchDeletePost(post) {
+    return fetch(
+        `${BASE_URL}/posts/${post.id}`,
+        {
+            ...OPTS,
+            method: 'DELETE',
+            body: JSON.stringify(post)
+        },
+      ).then(res => {
+          return res.json()
+      })
 }
 
 export function fetchPostComments(postId) {

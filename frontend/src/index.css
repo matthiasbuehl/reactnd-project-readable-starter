@@ -53,6 +53,10 @@ input[type=text] {
   color: green;
 }
 
+.icon-delete {
+  color: red;
+}
+
 .nav-bar ul {
   list-style-type: none;
   margin: 0;

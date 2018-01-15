@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import {
   fetchPost,
   initPost,
@@ -28,7 +29,6 @@ class PostAddEditView extends React.Component {
     })
   }
 
-
   handleChange = (event, field) => {
     event.preventDefault()
     const { post } = this.props
@@ -41,13 +41,11 @@ class PostAddEditView extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { post, addPost, updatePost } = this.props
+    const { post, addPost, updatePost, history } = this.props
 
     const fn = this.isNew() ? addPost : updatePost
-    console.log('post', post)
-    console.log('isNew', this.isNew())
-    console.log('fn', fn)
     fn(post)
+    history.push('/')
   }
 
   isNew = () => {
@@ -97,4 +95,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostAddEditView)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostAddEditView))
