@@ -71,6 +71,32 @@ export function fetchPostComments(postId) {
         .then(res => res.json())
 }
 
+export function fetchAddComment(comment) {
+    return fetch(
+        `${BASE_URL}/comments`,
+        {
+            ...OPTS,
+            method: 'POST',
+            body: JSON.stringify(comment)
+        },
+      ).then(res => {
+          return res.json()
+      })
+}
+
+export function fetchUpdateComment(comment) {
+    return fetch(
+        `${BASE_URL}/comments/${comment.id}`,
+        {
+            ...OPTS,
+            method: 'PUT',
+            body: JSON.stringify(comment)
+        },
+      ).then(res => {
+          return res.json()
+      })
+}
+
 export function fetchCategories() {
     return fetch(`${BASE_URL}/categories`, OPTS)
         .then(res => res.json())

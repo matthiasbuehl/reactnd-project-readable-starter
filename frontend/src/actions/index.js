@@ -9,6 +9,8 @@ export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const RECEIVE_POST = 'RECEIVE_POST'
 export const RECEIVE_POST_COMMENTS = 'RECEIVE_POST_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const SET_CATEGORY = 'SET_CATEGORY'
 export const SET_SORT_BY  = 'SET_SORT_BY'
@@ -50,6 +52,16 @@ export const receivePost = post => ({
 export const receivePostComments = comments => ({
   type: RECEIVE_POST_COMMENTS,
   comments
+})
+
+export const addComment = comment => ({
+  type: ADD_COMMENT,
+  comment
+})
+
+export const updateComment = comment => ({
+  type: UPDATE_COMMENT,
+  comment
 })
 
 export const receiveCategories = categories => ({
@@ -101,6 +113,18 @@ export const fetchPostComments = (id) => dispatch => (
   PostsApi
     .fetchPostComments(id)
     .then(comments => dispatch(receivePostComments(comments)))
+)
+
+export const fetchAddComment = (comment) => dispatch => (
+  PostsApi
+    .fetchAddComment(comment)
+    .then(comment => dispatch(addComment(comment)))
+)
+
+export const fetchUpdateComment = (comment) => dispatch => (
+  PostsApi
+    .fetchUpdateComment(comment)
+    .then(comment => dispatch(updateComment(comment)))
 )
 
 export const fetchCategories = () => dispatch => (

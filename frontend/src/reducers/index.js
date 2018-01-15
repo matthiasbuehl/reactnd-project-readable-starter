@@ -6,6 +6,8 @@ import { ADD_POST } from "../actions/index";
 import { UPDATE_POST } from "../actions/index";
 import { RECEIVE_POST } from "../actions/index";
 import { RECEIVE_POST_COMMENTS } from "../actions/index";
+import { ADD_COMMENT } from "../actions/index";
+import { UPDATE_COMMENT } from "../actions/index";
 import { RECEIVE_CATEGORIES } from "../actions/index";
 import { SET_CATEGORY } from "../actions/index";
 import { SET_SORT_BY } from "../actions/index";
@@ -78,6 +80,16 @@ function post(state = initialState, action) {
           ...state.post,
           comments: action.comments
         }
+      }
+    case ADD_COMMENT:
+      return {
+        ...state,
+        comment: action.cmment
+      }
+    case UPDATE_COMMENT:
+      return {
+        ...state,
+        comment: action.comment
       }
     case RECEIVE_CATEGORIES:
       return {

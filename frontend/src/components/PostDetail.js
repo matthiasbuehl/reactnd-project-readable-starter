@@ -5,14 +5,26 @@ import { Link } from 'react-router-dom'
 import * as Format from '../utils/format'
 import { fetchDeletePost } from '../actions'
 import PostRow from './PostRow'
+import CommentForm from './CommentForm';
 
 class PostDetail extends Component {
+  state = {
+    showCommentForm: false
+  }
+
   handleDelete = (event) => {
     event.preventDefault()
     const { post, deletePost, history } = this.props
 
     deletePost(post)
     history.push('/')
+  }
+
+  handleAddComment = (event) => {
+    event.preventDefault()
+    this.setState({
+      showCommentForm: !this.state.showCommentForm
+    })
   }
 
   render() {
@@ -54,7 +66,20 @@ class PostDetail extends Component {
           {body}
         </div>
 
-        {comments ? (<h1>Comments</h1>) : null}
+        {comments
+          ? (
+              <h1>
+                Comments<a href="" onClick={this.handleAddComment} className="icon icon-add">+</a>
+              </h1>
+            )
+          : null
+        }
+
+        {this.state.showCommentForm
+        ? <CommentForm post={post}/>
+        : null
+        }
+
         {comments
           && comments.map(comment => (
             <div key={comment.id}>{comment.body} - {comment.author}</div>
