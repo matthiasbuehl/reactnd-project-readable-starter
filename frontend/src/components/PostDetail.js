@@ -75,10 +75,7 @@ class PostDetail extends Component {
           : null
         }
 
-        {this.state.showCommentForm
-        ? <CommentForm post={post}/>
-        : null
-        }
+        <CommentForm post={post} show={this.state.showCommentForm} />
 
         {comments
           && comments.map(comment => (

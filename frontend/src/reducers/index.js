@@ -84,7 +84,7 @@ function post(state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        comment: action.cmment
+        [post.comments]: state.post.comments.push(action.comment)
       }
     case UPDATE_COMMENT:
       return {
