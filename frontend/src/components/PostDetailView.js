@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import PostDetail from './PostDetail'
-import CommentForm from './CommentForm'
 import { fetchPost, fetchPostComments } from '../actions'
 
 class PostDetailView extends React.Component {

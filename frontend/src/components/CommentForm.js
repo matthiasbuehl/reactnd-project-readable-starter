@@ -40,7 +40,7 @@ class CommentForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { toggleAddCommentForm, addComment, updateComment, history } = this.props
+    const { toggleAddCommentForm, addComment, updateComment } = this.props
     const comment = this.props.comment || this.state.comment
 
     this.isNew() ? addComment({ ...comment, id: uuid() }) : updateComment(comment)

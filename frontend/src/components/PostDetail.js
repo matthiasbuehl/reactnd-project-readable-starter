@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import * as Format from '../utils/format'
 import { fetchDeletePost, fetchDeleteComment } from '../actions'
 import PostRow from './PostRow'
 import CommentForm from './CommentForm';
@@ -54,7 +53,7 @@ class PostDetail extends Component {
                 <tr>
                   {
                     columnMaps
-                      .filter(col => col.field != 'body')
+                      .filter(col => col.field !== 'body')
                       .map(columnMap => (
                         <th key={columnMap.field}>
                           {columnMap.display}
