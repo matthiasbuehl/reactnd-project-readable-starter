@@ -8,7 +8,8 @@ import CommentForm from './CommentForm';
 
 class PostDetail extends Component {
   state = {
-    showAddCommentForm: false
+    showAddCommentForm: false,
+    editCommentId: null
   }
 
   handleDelete = (event) => {
@@ -25,6 +26,20 @@ class PostDetail extends Component {
       showAddCommentForm: !this.state.showAddCommentForm
     })
   }
+
+  toggleEditCommentForm = (event, comment) => {
+    console.log(comment.id, this.state.editCommentId)
+    if (event) event.preventDefault()
+    this.setState({
+      editCommentId: this.state.editCommentId === comment.id
+        ? null
+        : comment.id
+    })
+  }
+
+  showEditCommentForm = (comment) => comment.id === this.state.editCommentId
+
+  closeEditForm = () => this.setState({editCommentId: null})
 
   handleCommentDelete = (event, comment) => {
     event.preventDefault()
@@ -100,6 +115,14 @@ class PostDetail extends Component {
                 onClick={(event) => this.handleCommentDelete(event, comment)}
                 className="icon icon-delete">x
               </a>
+              <a href=""
+                onClick={(event) => this.toggleEditCommentForm(event, comment)}
+                className="icon icon-edit">&#9998;
+              </a>
+              {this.showEditCommentForm(comment)
+              ? <CommentForm post={post} comment={comment} closeEditForm={this.closeEditForm} />
+              : null
+              }
             </div>
           ))}
 

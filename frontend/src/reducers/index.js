@@ -93,14 +93,18 @@ function post(state = initialState, action) {
     case UPDATE_COMMENT:
       return {
         ...state,
-        comment: action.comment
+        post: {
+          ...state.post,
+          comments: state.post.comments
+            .map(comment => comment.id === action.comment.id ? action.comment : comment)
+        }
       }
       case DELETE_COMMENT:
       return {
         ...state,
         post: {
           ...state.post,
-          comments: state.post.comments.filter(comment => comment.id !== action.comment.id )
+          comments: state.post.comments.filter(comment => comment.id !== action.comment.id)
         }
       }
     case RECEIVE_CATEGORIES:
