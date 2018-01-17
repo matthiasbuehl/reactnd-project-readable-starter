@@ -9,7 +9,7 @@ import CommentForm from './CommentForm';
 
 class PostDetail extends Component {
   state = {
-    showCommentForm: false
+    showAddCommentForm: false
   }
 
   handleDelete = (event) => {
@@ -20,14 +20,16 @@ class PostDetail extends Component {
     history.push('/')
   }
 
-  handleAddComment = (event) => {
-    event.preventDefault()
+  toggleAddCommentForm = (event) => {
+    console.log(this.state)
+    if (event) event.preventDefault()
     this.setState({
-      showCommentForm: !this.state.showCommentForm
+      showAddCommentForm: !this.state.showAddCommentForm
     })
   }
 
   render() {
+    const { showAddCommentForm } = this.state
     const { post, columnMaps } = this.props
     const { id, body, comments } = post
 
@@ -51,7 +53,8 @@ class PostDetail extends Component {
                         <th key={columnMap.field}>
                           {columnMap.display}
                         </th>
-                      ))}
+                      ))
+                  }
                 </tr>
               </thead>
               <tbody>
@@ -68,14 +71,21 @@ class PostDetail extends Component {
 
         {comments
           ? (
-              <h1>
-                Comments<a href="" onClick={this.handleAddComment} className="icon icon-add">+</a>
-              </h1>
-            )
+            <h1>
+              Comments
+                <a href=""
+                onClick={this.toggleAddCommentForm}
+                className="icon icon-add">+
+                </a>
+            </h1>
+          )
           : null
         }
 
-        <CommentForm post={post} show={this.state.showCommentForm} />
+        {showAddCommentForm
+          ? <CommentForm post={post} toggleAddCommentForm={this.toggleAddCommentForm} />
+          : null
+        }
 
         {comments
           && comments.map(comment => (

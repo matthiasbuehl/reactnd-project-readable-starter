@@ -13,7 +13,7 @@ const defaultComment = {
 class CommentForm extends React.Component {
 
   componentWillMount() {
-    const { comment, post} = this.props
+    const { comment, post } = this.props
 
     this.setState({
       comment: comment
@@ -23,11 +23,6 @@ class CommentForm extends React.Component {
           parentId: post.id
         }
     })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('receiving props', nextProps, this.props)
-    this.setState({ show: nextProps.show })
   }
 
   handleChange = (event, field) => {
@@ -45,13 +40,11 @@ class CommentForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { addComment, updateComment, history } = this.props
+    const { toggleAddCommentForm, addComment, updateComment, history } = this.props
     const comment = this.props.comment || this.state.comment
 
-    this.isNew() ? addComment({ ...comment, id: uuid() } ) : updateComment(comment)
-    //this.setState({show: false})
-    this.setState({comment: defaultComment})
-    // TODO: figure out how to hide for after submit
+    this.isNew() ? addComment({ ...comment, id: uuid() }) : updateComment(comment)
+    toggleAddCommentForm()
   }
 
   isNew = () => {
@@ -60,23 +53,21 @@ class CommentForm extends React.Component {
   }
 
   render() {
-    const { comment, show } = this.state
+    const { comment } = this.state
 
     return (
-      show
-        ? <div className="comment-add-edit-view">
-          <h3>Add/Edit</h3>
-          <form onSubmit={this.handleSubmit}>
-            <label>Body
+      <div className="comment-add-edit-view">
+        <h3>Add/Edit</h3>
+        <form onSubmit={this.handleSubmit}>
+          <label>Body
                 <input type="text" name="body" value={comment.body} onChange={this.handleChange}></input>
-            </label>
-            <label>Author
+          </label>
+          <label>Author
                 <input type="text" name="author" value={comment.author} onChange={this.handleChange}></input>
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
-        : null
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     )
   }
 }

@@ -35,7 +35,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostDetailView)
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetailView)
