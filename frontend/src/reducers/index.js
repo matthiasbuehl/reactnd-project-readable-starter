@@ -8,6 +8,7 @@ import { RECEIVE_POST } from "../actions/index";
 import { RECEIVE_POST_COMMENTS } from "../actions/index";
 import { ADD_COMMENT } from "../actions/index";
 import { UPDATE_COMMENT } from "../actions/index";
+import { DELETE_COMMENT } from "../actions/index";
 import { RECEIVE_CATEGORIES } from "../actions/index";
 import { SET_CATEGORY } from "../actions/index";
 import { SET_SORT_BY } from "../actions/index";
@@ -84,12 +85,23 @@ function post(state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        [post.comments]: state.post.comments.push(action.comment)
+        post: {
+          ...state.post,
+          comments: state.post.comments.concat(action.comment)
+        }
       }
     case UPDATE_COMMENT:
       return {
         ...state,
         comment: action.comment
+      }
+      case DELETE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter(comment => comment.id !== action.comment.id )
+        }
       }
     case RECEIVE_CATEGORIES:
       return {

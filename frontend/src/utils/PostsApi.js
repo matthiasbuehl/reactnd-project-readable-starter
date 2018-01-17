@@ -97,6 +97,19 @@ export function fetchUpdateComment(comment) {
       })
 }
 
+export function fetchDeleteComment(comment) {
+    return fetch(
+        `${BASE_URL}/comments/${comment.id}`,
+        {
+            ...OPTS,
+            method: 'DELETE',
+            body: JSON.stringify(comment)
+        },
+      ).then(res => {
+          return res.json()
+      })
+}
+
 export function fetchCategories() {
     return fetch(`${BASE_URL}/categories`, OPTS)
         .then(res => res.json())

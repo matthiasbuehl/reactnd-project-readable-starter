@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import * as Format from '../utils/format'
-import { fetchDeletePost } from '../actions'
+import { fetchDeletePost, fetchDeleteComment } from '../actions'
 import PostRow from './PostRow'
 import CommentForm from './CommentForm';
 
@@ -21,14 +21,20 @@ class PostDetail extends Component {
   }
 
   toggleAddCommentForm = (event) => {
-    console.log(this.state)
     if (event) event.preventDefault()
     this.setState({
       showAddCommentForm: !this.state.showAddCommentForm
     })
   }
 
+  handleCommentDelete = (event, comment) => {
+    event.preventDefault()
+    const { deleteComment } = this.props
+    deleteComment(comment)
+  }
+
   render() {
+    console.log('render')
     const { showAddCommentForm } = this.state
     const { post, columnMaps } = this.props
     const { id, body, comments } = post
@@ -89,7 +95,13 @@ class PostDetail extends Component {
 
         {comments
           && comments.map(comment => (
-            <div key={comment.id}>{comment.body} - {comment.author}</div>
+            <div key={comment.id}>
+              {comment.body} - {comment.author}
+              <a href=""
+                onClick={(event) => this.handleCommentDelete(event, comment)}
+                className="icon icon-delete">x
+              </a>
+            </div>
           ))}
 
       </div>
@@ -104,7 +116,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    deletePost: (id) => dispatch(fetchDeletePost(id))
+    deletePost: (post) => dispatch(fetchDeletePost(post)),
+    deleteComment: (comment) => dispatch(fetchDeleteComment(comment))
   }
 }
 
