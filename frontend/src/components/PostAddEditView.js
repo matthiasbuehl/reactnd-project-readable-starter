@@ -64,7 +64,7 @@ class PostAddEditView extends React.Component {
             <input readOnly={true} type="hidden" value={post.id} />
             {
               columnMaps
-                .filter(col => !['timestamp', 'voteScore'].includes(col.field) )
+                .filter(col => !['timestamp', 'voteScore', 'commentCount'].includes(col.field) )
                 .map(columnMap => (
                 <label key={columnMap.field}>
                   {columnMap.display}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchDeletePost, fetchDeleteComment } from '../actions'
 import PostRow from './PostRow'
@@ -48,7 +48,6 @@ class PostDetail extends Component {
   }
 
   render() {
-    console.log('render')
     const { showAddCommentForm } = this.state
     const { post, columnMaps } = this.props
     const { id, body, comments } = post
