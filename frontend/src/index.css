@@ -41,8 +41,16 @@ input[type=text] {
   padding: 10px;
 }
 
-.category-active {
+a.category {
+  background-color: beige;
+  padding:5px;
+  border: 1px solid grey;
+}
+
+a.category-active {
   background-color: rgb(32, 174, 218);
+  padding:5px;
+  border: 1px solid grey;
 }
 
 .icon {

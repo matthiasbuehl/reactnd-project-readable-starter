@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { setCategory } from '../actions'
 
 class CategoryList extends React.Component {
-  handleClick = (e) => {
-    const { category } = this.props
-    e.preventDefault()
+  handleClick = (event, category) => {
+    const prevCategory = this.props.category
+    let selectedCategory = category
 
-    let selectedCategory = e.target.value
-    selectedCategory = selectedCategory === category ? null : selectedCategory
+    selectedCategory = selectedCategory === prevCategory ? null : selectedCategory
     this.props.setCategory(selectedCategory)
   }
 
@@ -19,13 +19,13 @@ class CategoryList extends React.Component {
         ? (<div className="category-list">
          <span>Categories: </span>
           {categories.map(cat => (
-            <button
+            <Link
               key={cat.name}
-              value={cat.name}
-              onClick={this.handleClick}
+              onClick={(event) => this.handleClick(event, cat.name)}
+              to={`/${cat.path}`}
               className={cat.name === category ? 'category-active' : 'category'}>
               {cat.name}
-            </button>
+            </Link>
           ))}
         </div>)
         : null
