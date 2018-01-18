@@ -24,7 +24,8 @@ const initialState = {
     { display: 'Date', field: 'timestamp' },
     { display: 'Author', field: 'author' },
     { display: 'Cateogry', field: 'category' },
-    { display: 'Vote Count', field: 'voteScore' }
+    { display: 'Vote Count', field: 'voteScore' },
+    { display: 'Comment Count', field: 'commentCount' }
   ],
   sortBy: { column: 'title', order: 'asc' }
 }
@@ -87,7 +88,8 @@ function post(state = initialState, action) {
         ...state,
         post: {
           ...state.post,
-          comments: state.post.comments.concat(action.comment)
+          comments: state.post.comments.concat(action.comment),
+          commentCount: state.post.comments.length + 1
         }
       }
     case UPDATE_COMMENT:
@@ -104,7 +106,8 @@ function post(state = initialState, action) {
         ...state,
         post: {
           ...state.post,
-          comments: state.post.comments.filter(comment => comment.id !== action.comment.id)
+          comments: state.post.comments.filter(comment => comment.id !== action.comment.id),
+          commentCount: state.post.comments.length - 1
         }
       }
     case RECEIVE_CATEGORIES:
