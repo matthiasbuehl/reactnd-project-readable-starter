@@ -6,7 +6,7 @@ import Error404 from './Error404'
 import PostListView from './PostListView'
 import PostDetailView from './PostDetailView'
 import PostAddEditView from './PostAddEditView'
-import { fetchCategories } from '../actions'
+import { fetchCategories, setCategory } from '../actions'
 import './App.css';
 
 class App extends Component {
@@ -14,12 +14,18 @@ class App extends Component {
     this.props.getCategories()
   }
 
+  handleAllPosts = (event) => {
+    event.preventDefault()
+    console.log(event)
+    this.props.setCategory(null)
+  }
+
   render() {
     return (
       <div className="app center">
         <div className='nav-bar'>
           <ul>
-            <li><Link to='/'>All Posts</Link></li>
+            <li><Link to='/' onClick={this.handleAllPosts}>All Posts</Link></li>
             <li><Link to='/add'>New Post</Link></li>
           </ul>
         </div>
@@ -41,7 +47,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCategories: () => dispatch(fetchCategories())
+    getCategories: () => dispatch(fetchCategories()),
+    setCategory: (category) => dispatch(setCategory(category))
   }
 }
 
