@@ -20,7 +20,7 @@ class PostRow extends Component {
 
     return (
       <tr className="post">
-        <td><Link to={`/${id}`}>{title}</Link></td>
+        <td><Link to={`${category}/${id}`}>{title}</Link></td>
         <td>{timestamp && Format.dateFromTimestamp(timestamp)}</td>
         <td>{author}</td>
         <td>{category}</td>

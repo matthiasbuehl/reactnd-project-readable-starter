@@ -15,8 +15,6 @@ class App extends Component {
   }
 
   handleAllPosts = (event) => {
-    event.preventDefault()
-    console.log(event)
     this.props.setCategory(null)
   }
 
@@ -31,8 +29,9 @@ class App extends Component {
         </div>
         <Switch>
           <Route exact path='/add' component={PostAddEditView} />
-          <Route exact path='/:post_id' component={PostDetailView} />
           <Route exact path='/:post_id/edit' component={PostAddEditView} />
+          <Route exact path='/:category/:post_id' component={PostDetailView} />
+          <Route exact path='/:category' component={PostListView} />
           <Route exact path='/' component={PostListView} />
           <Route component={Error404} />
         </Switch>
