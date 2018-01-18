@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import PostDetail from './PostDetail'
 import { fetchPost, fetchPostComments } from '../actions'
 
@@ -7,7 +8,7 @@ class PostDetailView extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.post_id
     this.props.getPost(id)
-      .then(this.props.getPostComments(id))
+      .then(() => this.props.getPostComments(id))
   }
 
   render() {
@@ -34,4 +35,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetailView)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostDetailView))

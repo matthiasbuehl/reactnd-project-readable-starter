@@ -28,6 +28,7 @@ class App extends Component {
           </ul>
         </div>
         <Switch>
+          <Route exact path='/404' component={Error404} />
           <Route exact path='/add' component={PostAddEditView} />
           <Route exact path='/:post_id/edit' component={PostAddEditView} />
           <Route exact path='/:category/:post_id' component={PostDetailView} />

@@ -12,6 +12,13 @@ class PostDetail extends Component {
     editCommentId: null
   }
 
+  componentDidMount() {
+    const { post, history } = this.props
+    if (! post.id) {
+      history.push('/404')
+    }
+  }
+
   handleDelete = (event) => {
     event.preventDefault()
     const { post, deletePost, history } = this.props
