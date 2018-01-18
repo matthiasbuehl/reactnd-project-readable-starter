@@ -17,7 +17,7 @@ class CategoryList extends React.Component {
     return (
       categories
         ? (<div className="category-list">
-         <span>Categories:</span>
+         <span>Categories: </span>
           {categories.map(cat => (
             <button
               key={cat.name}
