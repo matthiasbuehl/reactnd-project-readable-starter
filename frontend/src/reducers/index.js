@@ -101,7 +101,7 @@ function post(state = initialState, action) {
             .map(comment => comment.id === action.comment.id ? action.comment : comment)
         }
       }
-      case DELETE_COMMENT:
+    case DELETE_COMMENT:
       return {
         ...state,
         post: {
