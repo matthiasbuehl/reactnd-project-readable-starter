@@ -75,7 +75,8 @@ function post(state = initialState, action) {
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter(post => post.id != action.post.id)
+        posts: state.posts.filter(post => post.id !== action.post.id),
+        post: null
       }
     case RECEIVE_POST:
       return {
